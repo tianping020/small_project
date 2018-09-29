@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset='utf-8'">
+    <title>调整div达到我们所需的效果</title>
+    <style>
+        #outer {
+            width:500px;
+            height:500px;
+            margin: 0 auto;
+            padding: 0;
+            text-align: center;
+        }
+        #inner {
+            background-color: aqua;
+            width: 100px;
+            height: 100px;
+            margin: 10px auto;
+            padding: 0;
+            display: block;
+        }
+
+    </style>
+    <script>
+        var setstyle = function(elem,attr,value) {
+            elem.style[attr] = value;
+        };
+        /*
+        定义一个函数表达式，用来给对应元素设置对应的样式
+         */
+        window.onload = function()
+        {
+            var but = document.getElementsByTagName("input");
+            var indiv = document.getElementById("inner");
+            var attr = ["background", "width", "height", "display", "display"];
+            var val = ["blue", "300px", "300px", "none", "block"];
+            /*
+            display用于设置某标签的显示状态，取值有三种：
+            1）none：表示不显示，即隐藏
+            2）block：表示以块状标签显示，即该标签独占一行，前后各有一个换行符
+            3）inline：表示以行级标签显示，即该标签与其他标签同处一样
+            */
+            for (var i = 0; i < but.length; i++) {
+                but[i].index = i;
+                but[i].onclick = function () {
+                    this.index == but.length - 1 && (indiv.style.cssText = "");
+                    /*
+                    (1)a() && b() :如果执行a()后返回true，则执行b()并返回b的值；如果执行
+                    a()后返回false，则整个表达式返回a()的值，b()不执行；
+                    a() || b() :如果执行a()后返回true，则整个表达式返回a()的值，b()
+                    不执行；如果执行a()后返回false，则执行b()并返回b()的值；&& 优先级
+                    高于 ||
+                    (2)如果this.index == oBtn.length - 1 条件符合了,就执行
+                    (oDiv.style.cssText = "");操作，等价于
+                        if(this.index == oBtn.length - 1 ){
+                            oDiv.style.cssText = ""
+                        }
+                     (3)此处没有赋值操作
+                     (4)indiv.style.cssText = ""的主要目的就是将样式清空
+                    */
+                    setstyle(indiv, attr[this.index], val[this.index]);
+                }
+            }
+        };
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <input type="button" value="变蓝">
+        <input type="button" value="变宽">
+        <input type="button" value="变高">
+        <input type="button" value="消失">
+        <input type="button" value="重置">
+        <div id="inner">
+        </div>
+    </div>
+</body>
+</html>

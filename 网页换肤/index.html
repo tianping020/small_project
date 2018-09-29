@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>网页换肤</title>
+    <style>
+        body,ul,li{margin:0;padding:0;}
+        html,body{height:100%;}
+        body{font:12px/1.5 Tahoma;}   /* 字体大小 字体行高 字体格式 */
+        li{list-style-type:none;}     /* 设置列表项标记的类型 */
+        a:link,a:visited{text-decoration:none;}
+
+        /*
+        a:link {}     未访问时的状态
+        a:visited {}  已访问过的状态
+        a:hover {}    鼠标移动到链接上时的状态
+        a:active {}   鼠标按下去时的状态
+         */
+        a:hover{text-decoration:underline;}
+        #outer{width:500px;margin:0 auto;overflow:hidden;zoom:1;}
+        #skin,#nav{overflow:hidden;zoom:1;}
+        #skin{margin:10px 0;}
+        #skin li{float:left;width:6px;height:6px;cursor:pointer;overflow:hidden;margin-right:10px;text-indent:-9999px;border-width:4px;border-style:solid;}
+        /*
+           cursor 属性规定所显示的指针（光标）的类型。 pointer 光标呈现为指示链接的指针（一只手）
+           margin-right 设置元素的右外边距
+           text-indent:-9999px 隐藏对象内的内容功能，比如隐藏DIV内文字等
+           overflow 属性规定当内容溢出元素框时发生的事情。
+           其实Zoom属性是IE浏览器的专有属性，Firefox等浏览器不支撑。它可以设置或检索对象的缩放比例。
+           除此之外，它还有其他一些小感化，比如触发ie的hasLayout属性，清除浮动、清除margin的重叠等。
+        */
+        #skin li.current{background:#fff!important;}
+        /*
+           后面缀上了!important的css语句，让浏览器首选执行这个语句，因为css有继承的样式，加上!importanrt可以覆盖父级的样式。
+         */
+        #red{border-color:red;background:red;}
+        #green{border-color:green;background:green;}
+        #black{border-color:black;background:black;}
+        #nav{border:1px solid #fff;}
+        #nav li{float:left; width:82px;line-height:25px;text-align:center;border-right:1px solid #fff;}
+        #nav li.last{width:83px;border-right-width:0;}
+        #nav li a{color:#fff;}
+    </style>
+    <link href="green.css" rel="stylesheet" type="text/css" />
+    <script>
+        window.onload = function ()
+        {
+            var oLink = document.getElementsByTagName("link")[0];
+            ////oLink获取了link的NodeList的第一项（页面内第一个link）
+            var oSkin = document.getElementById("skin").getElementsByTagName("li");
+            //oSkin获取了按钮列表skin中的所有按钮li组成的NodeList的数组。
+            for(var i = 0; i < oSkin.length; i++)  //用for循环遍历每一个按钮
+            {
+                oSkin[i].onclick = function ()    //onclick事件绑在按钮数组oSkin（的每一项）上
+                {
+                    for(var p in oSkin) oSkin[p].className = "";  //for in迭代oSkin对象的每一项，修改每一项的className都变成空
+                    this.className = "current";        //紧接着把当前的那个按钮li的className改成"current"，没有实际效果，但onclick后代码内可以清晰呈现出当前click的是哪一个li，是哪一种颜色。 （这两行也可以不要）
+                    oLink['href'] = this.id + ".css";   //方括号以属性名href调用link的href属性，修改成当前按钮调用的的id.css，改变了调用的外部css文件，进而改变了style。
+                }
+                }
+
+
+        };   //onload阶段完成了每一个按钮的onclick设定
+    </script>
+</head>
+<body>
+<div id="outer">
+    <ul id="skin">
+        <li id="red" title="红色">红</li><li id="green" class="current" title="绿色">绿</li><li id="black" title="黑色">黑</li>
+    </ul>
+    <ul id="nav">
+    <li><a href="javascript:;">新闻</a></li>
+    <li><a href="javascript:;">娱乐</a></li>
+    <li><a href="javascript:;">体育</a></li>
+    <li><a href="javascript:;">电影</a></li>
+    <li><a href="javascript:;">音乐</a></li>
+    <li class="last"><a href="javascript:;">旅游</a></li>
+</ul>
+</div>
+</body>
+</html>
