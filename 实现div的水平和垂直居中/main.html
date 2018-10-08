@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>实现div的水平和垂直居中</title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            background: blue;
+            margin: 0 auto;
+        }
+        #div2 {
+            width: 100px;
+            height: 100px;
+            background: #7aff98;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">实现水平居中</div>
+    <div id="div2">实现水平和垂直居中</div>
+</body>
+</html>
+
+<!--
+  (1)margin的auto属性的作用是用来分配剩余空间，
+  所以对于有剩余空间的元素才有效。比如图片设置margin: 0 auto是无效的，
+  因为图片是内联元素，不是占一整行，没有剩余空间。
+  (2)水平方向居中:
+  跟垂直方向无关，垂直方向可随便设置，只要水平左右都设置为auto即可。
+  注意width宽度一定要设置，没有宽度的块默认就是100%，就没有auto值了。
+  (3)水平垂直居中:
+  .1)在普通内容流中，margin:auto的效果等同于margin-top:0;margin-bottom:0。
+  .2)position:absolute使绝对定位块跳出了内容流，内容流中的其余部分渲染时绝对定位部分不进行渲染。
+  .3)为块区域设置top: 0; left: 0; bottom: 0; right: 0;将给浏览器重新分配一个边界框，此时该
+   块块将填充其父元素的所有可用空间，所以margin 垂直方向上有了可分配的空间。
+  .4)再设置margin 垂直方向上下为auto，即可实现垂直居中。（注意高度得设置）
+-->

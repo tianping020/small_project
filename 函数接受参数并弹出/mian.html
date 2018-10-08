@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>函数接受参数并输出</title>
+</head>
+<style>
+    body {
+        font: 12px/1.0 Tahoma;
+        text-align: center;
+    }
+    code,input,button {
+        font-family: inherit;
+    }
+    input {
+        border: 1px solid #A3C5A8;
+        padding: 2px;
+    }
+    button {
+        cursor: pointer;
+    }
+    <!--
+        cursor属性规定了要显示的光标的类型
+        该属性定义了鼠标指针放在一个元素边界范围内时所用的光标形状（不过 CSS2.1 没有定义由哪个边界确定这个范围）。
+    -->
+</style>
+<script>
+    var myFunction = function(m1,m2) {
+        alert(m1.value);
+        alert(m2.value);
+    };
+    window.onload = function() {
+        var onInput = document.getElementsByTagName("input");
+        var onButton = document.getElementsByTagName("button")[0];
+        onButton.onclick = function() {
+            myFunction(onInput[0],onInput[1]);
+        }
+    }
+
+</script>
+<body>
+    <p><input type="text" value="武汉市"></p>
+    <p><input type="text" value="武汉理工大学"></p>
+    <p><button>提交</button></p>
+</body>
+</html>

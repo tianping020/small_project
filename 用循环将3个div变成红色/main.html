@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+    <title>用循环将3个div变成紫色</title>
+    <style>
+        p {
+            text-align: center;
+        }
+        #outer {
+            width: 330px;
+            height: 100px;
+            margin: 10px auto;
+        }
+        #outer div {
+            width: 100px;
+            height: 100px;
+            margin: 0 5px;
+            float:left;
+            background: aqua;
+        }
+
+
+    </style>
+    <script>
+        window.onload = function() {
+            var oDiv = document.getElementById("outer").getElementsByTagName("div");
+            var oBtn = document.getElementsByTagName("button")[0];
+            oBtn.onclick = function() {
+                for(var i = 0;i < oDiv.length; i++) {
+                    oDiv[i].style.background = "purple";
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <p><button>点击会变色哦!</button></p>   <!--button外面套p是为了让按钮可以居中-->
+    <div id="outer">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</body>
+</html>
